@@ -10,13 +10,13 @@ void menu::input(std::__cxx11::string input){
     if(input[0]=='1'){
         SERIAL_AT.println("TRUE");
         br = true;
-        nazwa = "Welcome!!! becon attack- 2, help - 1,";
+        nazwa = "Welcome!!! becon attack- 2, help - 1,\n";
         pick_sett = 1;
     }
         if(input[0]=='2'){
             becon bc;
             br = true;
-        nazwa = "Starting WiFi becon attack. To leave type 1";
+        nazwa = "Starting WiFi becon attack. To leave type 1\n";
         pick_sett = 2;
 
     }

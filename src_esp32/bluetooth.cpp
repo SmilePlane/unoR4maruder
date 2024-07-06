@@ -1,6 +1,6 @@
-  #include <Arduino.h>
+/* #include <Arduino.h>
   #include "bluetooth.h"
-  #include <NimBLEDevice.h>
+#include <NimBLEDevice.h>
 #include <NimBLEUtils.h>
 #include <NimBLEServer.h>
 #include <NimBLECharacteristic.h>
@@ -38,7 +38,7 @@ class CharacteristicCallbacks : public NimBLECharacteristicCallbacks {
         for (int i = 0; i < rxValue.length(); i++) {
           SERIAL_AT.print(rxValue[i]);
         }
-        men.input(rxValue);
+        //men.input(rxValue);
         SERIAL_AT.println();
       }
     }
@@ -104,4 +104,4 @@ if(deviceConnected){
   //pTxCharacteristic->notify();
 return true;
 
-};
+};*/ 

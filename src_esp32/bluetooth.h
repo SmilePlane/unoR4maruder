@@ -3,6 +3,9 @@ class bt{
     public:
     void connect();
     bool write(const char* message);
-    char print;
+    //extern char* print;
+    //extern bool transmission;
+
+
 };
 #endif
