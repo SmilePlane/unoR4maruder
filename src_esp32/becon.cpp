@@ -1,6 +1,6 @@
 #include "becon.h"
 #include <Arduino.h>
-//code stolen from: https://github.com/spacehuhn/esp8266_beaconSpam/issues
+//code stolen from: https://github.com/spacehuhn/esp8266_beaconSpam/
 // ===== Settings ===== //
 const uint8_t channels[] = {1, 6, 11}; // used Wi-Fi channels (available: 1-14)
 const bool wpa2 = true; // WPA2 networks

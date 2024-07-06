@@ -14,6 +14,7 @@
 //#include "menu.cpp"
 bool br = false;
 char* nazwa;
+int writing = 1;
 #define SERVICE_UUID           "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" // UART service UUID
 #define CHARACTERISTIC_UUID_RX "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 #define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -23,13 +24,11 @@ NimBLECharacteristic *pTxCharacteristic;
 bool deviceConnected = false;
 uint32_t value = 60;
 menu men;
-//char* nazwa;
-//bool br = false;
-//menu mn;
 class ServerCallbacks : public NimBLEServerCallbacks {
     void onConnect(NimBLEServer* pServer) {
       deviceConnected = true;
-      nazwa = "Welcome!!! type 1 for help or another number for attack number\n";
+      br = true;
+      nazwa = "Welcome!!! type 1 for help or another number for attack number\r";
     };
 
     void onDisconnect(NimBLEServer* pServer) {
@@ -42,19 +41,24 @@ class CharacteristicCallbacks : public NimBLECharacteristicCallbacks {
     void onWrite(NimBLECharacteristic *pCharacteristic) {
       std::string rxValue = pCharacteristic->getValue();
       if (rxValue.length() > 0) {
-        SERIAL_AT.print("Received Value: ");
+        //SERIAL_AT.print("Received Value: ");
         for (int i = 0; i < rxValue.length(); i++) {
-          SERIAL_AT.print(rxValue[i]);
+          if(writing==2){SERIAL_AT.print(rxValue[i]);
+          if(rxValue[i]=='1'){
+            writing=1;          }}
         }
-        men.input(rxValue);
-        SERIAL_AT.println();
+        switch(writing){
+          case 1:men.input(rxValue);
+        }
+        
+        //SERIAL_AT.println();
       }
     }
 };
 //
 void setup() {
   esp_uno_r4_setup();
-  SERIAL_AT.begin(115200);
+  //SERIAL_AT.begin(115200);
   if(!deviceConnected){
       // Create the BLE Device
   NimBLEDevice::init("ESP32_S3_BLE_Serial");
@@ -84,19 +88,16 @@ void setup() {
 
   // Start advertising
   pServer->getAdvertising()->start();
-  SERIAL_AT.println("Waiting for a client connection to notify...");
-  while(!deviceConnected){
-    SERIAL_AT.println("WHILE");
-  }
+  //SERIAL_AT.println("Waiting for a client connection to notify...");
   //ble.connect();
 }}
 
 void loop() {
   //SERIAL_AT.println(ble.transmission);
   if(deviceConnected&&br){
-    SERIAL_AT.println("LOOP DZIALA");
+    //SERIAL_AT.println("LOOP DZIALA");
   //const char* str = "Hello, World!";  // You can replace this with any string
-  SERIAL_AT.print(nazwa);
+  //SERIAL_AT.print(nazwa);
   for (int i = 0; nazwa[i] != '\0'; ++i) {
     //delay(10);
     char character = nazwa[i];
@@ -106,7 +107,7 @@ void loop() {
       int ascii_value = static_cast<int>(character);
       pTxCharacteristic->setValue(ascii_value);
       pTxCharacteristic->notify(false);
-      SERIAL_AT.println(ascii_value);
+      //SERIAL_AT.println(ascii_value);
       ///.print(character);
      delay(10);
     }
