@@ -1,1 +1,1 @@
-This is a recreation of EPS32 maruder for Arduino UNO R4 WiFi. This is under construction. Now only Wifi spamming is working.
+This is a recreation of EPS32 maruder for Arduino UNO R4 WiFi. This is under construction. Now only Wifi spamming is working. Now you can connect by bluetooth serial using app like this: https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&hl=en
