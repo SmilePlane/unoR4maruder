@@ -109,7 +109,7 @@ void loop() {
       pTxCharacteristic->notify(false);
       //SERIAL_AT.println(ascii_value);
       ///.print(character);
-     delay(10);
+     delay(5);
     }
     //pTxCharacteristic->notify();
   }

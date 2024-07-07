@@ -282,8 +282,8 @@ void becon::att(){
   // show packet-rate each second
   if (currentTime - packetRateTime > 1000) {
     packetRateTime = currentTime;
-    Serial.print("Packets/s: ");
-    Serial.println(packetCounter);
+    //Serial.print("Packets/s: ");
+    //Serial.println(packetCounter);
     packetCounter = 0;
   }
 //}

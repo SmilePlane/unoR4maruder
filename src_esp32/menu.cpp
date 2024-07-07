@@ -19,6 +19,7 @@ void menu::input(std::__cxx11::string input){
             br = true;
         nazwa = "Starting WiFi becon attack. To leave type 1\r";
         pick_sett = 2;
+        bc.sett_bec();
 
     }
             if(input[0]=='3'){
@@ -34,6 +35,6 @@ void menu::input(std::__cxx11::string input){
 void menu::sett_append(){
     becon bc;
 switch(pick_sett){
-    case 2: bc.sett_bec(); bc.att();
+    case 2: bc.att();
 }
 };

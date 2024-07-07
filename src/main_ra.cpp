@@ -10,7 +10,7 @@ void setup()
 
 void loop()
 {
-  delay(10);
+  delay(5);
 
   // Read messages from ESP32
   if (SERIAL_AT.available()) {
@@ -21,10 +21,6 @@ void loop()
     }*/
     //Serial.write("HIIII");
    //Serial.write(SERIAL_AT.read());
-   if(inChar=='3'&&!hid){
-Keyboard.begin();
-   hid = true;
-  }
    if(hid){
       if(inChar=='1'){
       Keyboard.end();
@@ -34,5 +30,9 @@ Keyboard.begin();
     //delay(1000);
 
    }
+      if(inChar=='3'&&!hid){
+Keyboard.begin();
+   hid = true;
+  }
   }
 }
