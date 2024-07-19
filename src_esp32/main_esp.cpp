@@ -1,5 +1,3 @@
-#include <esp_uno_r4.h>
-//#include "bluetooth.h"
 #include <NimBLEDevice.h>
 #include <NimBLEUtils.h>
 #include <NimBLEServer.h>
@@ -7,11 +5,8 @@
 #include <NimBLEHIDDevice.h>
 #include <NimBLE2904.h>
 #include <esp_uno_r4.h>
-#include <iostream>
-#include <string>
 #include "menu.h"
 #include "shared_virables.hpp"
-//#include "menu.cpp"
 bool br = false;
 char* nazwa;
 int writing = 1;
@@ -28,7 +23,7 @@ class ServerCallbacks : public NimBLEServerCallbacks {
     void onConnect(NimBLEServer* pServer) {
       deviceConnected = true;
       br = true;
-      nazwa = "Welcome!!! type 1 for help or another number for attack number\r";
+      nazwa = (char*)"this text never show for the user. It is only to allocate memory to not ovveride this virable by other";
     };
 
     void onDisconnect(NimBLEServer* pServer) {
@@ -58,6 +53,7 @@ class CharacteristicCallbacks : public NimBLECharacteristicCallbacks {
 //
 void setup() {
   esp_uno_r4_setup();
+  //static_storage.end();
   //SERIAL_AT.begin(115200);
   if(!deviceConnected){
       // Create the BLE Device
@@ -113,7 +109,10 @@ void loop() {
     }
     //pTxCharacteristic->notify();
   }
+      pTxCharacteristic->setValue(0x0D); //prints CR sign for new line in terminal
+      pTxCharacteristic->notify(false);
   br=false;
+
 }
   men.sett_append();
   //pTxCharacteristic->notify();
